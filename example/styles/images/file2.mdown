@@ -1,14 +1,12 @@
+![Este es un ejemplo de como truncar palabras en 50 caracteres](https://user-images.githubusercontent.com/110297/42118443-b7a5f1f0-7bc8-11e8-96ad-9cc5593715a6.jpg)
+
 Sí, al utilizar el método readFile del módulo fs/promises de Node.js, el objeto Error capturado por el catch tendrá una propiedad message que contiene una descripción del error.
 
 La propiedad message es una cadena de caracteres que proporciona información detallada sobre el error que se ha producido. Esta propiedad se establece automáticamente cuando se crea un objeto Error y se puede acceder a ella mediante la sintaxis de punto (por ejemplo, error.message).
 
-[Node.js](https://nodejs.org/)
+![cadena](../images/thumb.png)
 
 La propiedad message es una cadena de caracteres que proporciona información detallada sobre el error que se ha producido. Esta propiedad se establece automáticamente cuando se crea un objeto Error y se puede acceder a ella mediante la sintaxis de punto (por ejemplo, error.message).
 La propiedad message es una cadena de caracteres que proporciona información detallada sobre el error que se ha producido. Esta propiedad se establece automáticamente cuando se crea un objeto Error y se puede acceder a ella mediante la sintaxis de punto (por ejemplo, error.message).
 
 La propiedad message es una cadena de caracteres que proporciona información detallada sobre el error que se ha producido. Esta propiedad se establece automáticamente cuando se crea un objeto Error y se puede acceder a ella mediante la sintaxis de punto (por ejemplo, error.message).
-
-[recurso](https://www.youtube.com/watch?v=Lub5qOmY4JQ)
-
-[Módulos, librerías, paquetes, frameworks... ¿cuál es la diferencia?](http://community.laboratoria.la/t/modulos-librerias-paquetes-frameworks-cual-es-la-diferencia/175)
