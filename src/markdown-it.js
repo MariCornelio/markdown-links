@@ -34,12 +34,15 @@ export const loopTokens = (tokens, path) => {
 
     if (tokens[i].type === 'image') {
       const srcAttr = tokens[i].attrs.find(a => a[0] === 'src');
-      linksComplejos.push({
-        href: srcAttr[1],
-        text: tokens[i].content,
-        line: tokens[i].map[0] + 1 === tokens[i].map[1] ? tokens[i].map[1] : `${tokens[i].map[0] + 1}-${tokens[i].map[1]}`,
-        file: path,
-      })
+      const regex = /^https?:\/\/(?:[\w-]+\.)+[a-z]{2,}(?:[\w\/\+=%&_\.~?\-]*[^\.\s])?$/;
+      if (regex.test(srcAttr[1])) {
+        linksComplejos.push({
+          href: srcAttr[1],
+          text: tokens[i].content,
+          line: tokens[i].map[0] + 1 === tokens[i].map[1] ? tokens[i].map[1] : `${tokens[i].map[0] + 1}-${tokens[i].map[1]}`,
+          file: path,
+        })
+      }
     }
   }
   return linksComplejos;
