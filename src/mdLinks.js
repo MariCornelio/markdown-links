@@ -1,4 +1,3 @@
-// const fs = require('fs');
 import { filterMarkdown, getAllLinks, infoFetchLinks, pathAbsolute, pathValidate } from './api.js';
 
 
@@ -32,7 +31,4 @@ export const mdLinks = (path, options = { validate: false }) => {
     }
   })
 }
-// module.exports = { mdLinks };
-// module.exports = () => {
-//   mdLinks
-// };
+
