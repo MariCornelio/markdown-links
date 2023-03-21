@@ -2,7 +2,7 @@
 
 Sí, al utilizar el método readFile del módulo fs/promises de Node.js, el objeto Error capturado por el catch tendrá una propiedad message que contiene una descripción del error.
 
-La propiedad message es una cadena de caracteres que proporciona información detallada sobre el error que se ha producido. Esta propiedad se establece automáticamente cuando se crea un objeto Error y se puede acceder a ella mediante la sintaxis de punto (por ejemplo, error.message).
+La propiedad message es una cadena de caracteres que proporciona información detallada sobre el error que se ha producido. Esta propiedad se establece automáticamente cuando se crea un objeto Error y se puede acceder a ella mediante la sintaxis de punto (por ejemplo, error.message)
 
 ![cadena](../images/thumb.png)
 
