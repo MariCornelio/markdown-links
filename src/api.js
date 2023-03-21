@@ -1,8 +1,9 @@
 import { existsSync, lstatSync, readdirSync } from 'node:fs';
 import { extname, isAbsolute, join, resolve } from 'node:path';
+import MarkdownIt from 'markdown-it';
+
 import { readFile } from 'node:fs/promises';
 import { loopTokens } from './markdown-it.js';
-import MarkdownIt from 'markdown-it';
 
 // valida si el path se manda vacío o simplemente no existe
 export const pathValidate = (path) => existsSync(path) ? true : false;
@@ -17,9 +18,8 @@ export const filterMarkdown = (path, functionPathAbsolute) => {
   const fileExt = extname(pathAbsolute);
   // probar si es un directorio
   if (lstatSync(pathAbsolute).isDirectory()) {
-    // console.log(readdirSync(pathAbsolute));
     readdirSync(pathAbsolute).forEach(e => {
-      // arraymarkdown = arraymarkdown.concat(filterMarkdown(join(pathAbsolute, e), functionPathAbsolute));
+
       // si no se pone los tres puntitos entonces botaría arrays anidados
       arraymarkdown.push(...filterMarkdown(join(pathAbsolute, e), functionPathAbsolute));
     });
@@ -38,7 +38,7 @@ export const getLinks = (path) => {
       let arrayTokens = md.parse(file, {});
       return loopTokens(arrayTokens, path);
     })
-    .catch(err => 'Cannot read file' + err.message)
+    .catch(() => 'Cannot read file')
 }
 
 export const getAllLinks = (path) => {
@@ -54,12 +54,8 @@ export const infoFetchLinks = (arrayLinks) => {
         return { ...obj, status: res.status, ok: 'fail' }
       })
       .catch((err) => {
-        return { ...obj, status: `unexpected error occurred`, ok: 'fail' }
+        return { ...obj, status: `Unexpected error`, ok: 'fail' }
       })
   )
   return Promise.all(linksInfo);
 }
-
-// Promise.all(infoFetchLinks([{ href: 'https://nodejs.org/api/process.html' }]))
-//   .then(result => console.log(result))
-//   .catch(err => console.log('estoy en el catch', err))
