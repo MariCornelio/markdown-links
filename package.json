@@ -1,16 +1,29 @@
 {
   "name": "linkval",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "engines": {
     "node": ">=16.x"
   },
   "type": "module",
+  "main": "./src/mdLinks.js",
+  "description": "linkval, is a library that allows reading Markdown files to verify the links they contain, give statistics and check if they are valid or not, in addition to providing a command line tool ",
+  "keywords": [
+    "mdLinks",
+    "markdown links",
+    "verify links",
+    "get links",
+    "md",
+    "links",
+    "stats links",
+    "markdown-it",
+    "info Links"
+  ],
   "scripts": {
     "test": "jest --coverage",
     "build": "babel src -d dist"
   },
   "bin": {
-    "linkval": "./src/cli.js"
+    "linkval": "src/cli.js"
   },
   "bootcamp": {
     "createdAt": "2023-02-07T18:15:01.196Z",
@@ -25,6 +38,22 @@
     "jest": "^29.4.3"
   },
   "dependencies": {
-    "markdown-it": "^13.0.1"
-  }
+    "colors": "^1.4.0",
+    "inquirer": "^9.1.4",
+    "markdown-it": "^13.0.1",
+    "table": "^6.8.1"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MariCornelio/markdown-links.git"
+  },
+  "author": "Marilu Cornelio Zárate",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MariCornelio/markdown-links/issues"
+  },
+  "homepage": "https://github.com/MariCornelio/markdown-links#readme"
 }
