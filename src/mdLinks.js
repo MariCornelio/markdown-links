@@ -15,20 +15,20 @@ export const mdLinks = (path, options = { validate: false }) => {
           if (response.length === 0) return reject('There are no links in the Markdown file(s)');
           if (options.validate === true) {
             // devuelve lo devuelto por fetch
-            infoFetchLinks(response).then(res => resolve(res))
+            infoFetchLinks(response).then(res => resolve(res));
           } else {
-            return resolve(resp.flat())
+            return resolve(resp.flat());
           }
         })
         .catch((err => {
           // rechaza si ocurre un error de lectura de archivos
-          return reject(err)
-        }))
+          return reject(err);
+        }));
 
     } else {
       // rechaza si el path no existe
       return reject('Invalid path: It is empty or does not exist');
     }
-  })
-}
+  });
+};
 

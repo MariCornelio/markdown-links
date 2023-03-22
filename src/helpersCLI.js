@@ -9,10 +9,10 @@ export const inputEntered = () => {
       message: 'Enter your path to get started: ',
     }
   ];
-  console.log(`${colors.bgMagenta('Linkval')} : ${colors.cyan('Capture links, run validations and more')} ${colors.magenta('(start)')}`)
-  console.log(colors.magenta('========================================================='))
-  return inquirer.prompt(path)
-}
+  console.log(`${colors.bgMagenta('Linkval')} : ${colors.cyan('Capture links, run validations and more')} ${colors.magenta('(start)')}`);
+  console.log(colors.magenta('========================================================='));
+  return inquirer.prompt(path);
+};
 
 export const optionList = () => {
   const options = [
@@ -47,10 +47,10 @@ export const optionList = () => {
         },
       ]
     }
-  ]
+  ];
 
   return inquirer.prompt(options);
-}
+};
 
 export const pause = () => {
   const question = [
@@ -59,7 +59,7 @@ export const pause = () => {
       name: 'enter',
       message: `Press ${'ENTER'.green} to continue... `
     }
-  ]
+  ];
   console.log('\n');
   return inquirer.prompt(question);
-}
+};

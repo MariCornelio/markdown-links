@@ -34,7 +34,7 @@ describe('mdLinks', () => {
       line: 1,
       file: 'C:\\Users\\Laboratoria\\Desktop\\laboratoria\\markdown-links\\example\\styles\\images\\file2.mdown'
     }
-  ]
+  ];
   const validateTrue = [
 
     {
@@ -46,7 +46,7 @@ describe('mdLinks', () => {
       ok: 'ok',
     }
 
-  ]
+  ];
 
   beforeEach(() => {
     global.fetch = jest.fn(() => {
@@ -62,37 +62,40 @@ describe('mdLinks', () => {
   });
 
   it('mdLinks debería ser una función', () => {
-    expect(typeof mdLinks).toBe('function')
-  })
+    expect(typeof mdLinks).toBe('function');
+  });
 
   it('Debe rechazar cuando el path es vacío', () => {
-    return expect(mdLinks()).rejects.toBe('Invalid path: It is empty or does not exist')
-  })
+    return expect(mdLinks()).rejects.toBe('Invalid path: It is empty or does not exist');
+  });
 
   it('Debe rechazar cuando el path no existe', () => {
-    return expect(mdLinks('estePathNoexiste.md')).rejects.toBe('Invalid path: It is empty or does not exist')
-  })
+    return expect(mdLinks('estePathNoexiste.md')).rejects.toBe('Invalid path: It is empty or does not exist');
+  });
 
   it('Deberia rechazar si el path no es un archivo markdown', () => {
-    return expect(mdLinks('example/others/promesa.js')).rejects.toBe('It is not a markdown file or there are no markdown files in this path')
-  })
+    return expect(mdLinks('example/others/promesa.js')).rejects.toBe('It is not a markdown file or there are no markdown files in this path');
+  });
 
   it('Deberia rechazar si el path no contiene archivos markdown', () => {
-    return expect(mdLinks('example/js')).rejects.toBe('It is not a markdown file or there are no markdown files in this path')
-  })
+    return expect(mdLinks('example/js')).rejects.toBe('It is not a markdown file or there are no markdown files in this path');
+  });
+
   it('Deberia rechazar si el path no contiene contiene links', () => {
-    return expect(mdLinks('example/others')).rejects.toBe('There are no links in the Markdown file(s)')
-  })
+    return expect(mdLinks('example/others')).rejects.toBe('There are no links in the Markdown file(s)');
+  });
 
   it('Debería devolver un arreglo si encuentra links y sin segundo parámetro', () => {
     return expect(mdLinks('example')).resolves.toStrictEqual(validateFalse);
-  })
+  });
+
   it('Debería devolver un arreglo si encuentra links con validate:false', () => {
     return expect(mdLinks('example', { validate: false })).resolves.toStrictEqual(validateFalse);
-  })
+  });
+
   it('Debería devolver un arreglo si encuentra links con validate:true', () => {
     return expect(mdLinks('example/styles/images', { validate: true })).resolves.toStrictEqual(validateTrue);
-  })
+  });
 
 
 

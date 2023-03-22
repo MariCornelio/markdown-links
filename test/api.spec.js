@@ -6,17 +6,19 @@ import { filterMarkdown, getAllLinks, getLinks, infoFetchLinks, pathAbsolute, pa
 describe('pathValidate', () => {
   it('Debería retornar true si el path existe', () => {
     expect(pathValidate('example')).toBeTruthy();
-  })
+  });
+
   it('Debería retornar true si el path existe', () => {
     expect(pathValidate('ruta/inexistente')).toBeFalsy();
-  })
-})
+  });
+});
+
 describe('pathAbsolute', () => {
   it('Debería devolver una ruta absoluta para cualquie path ingresado', () => {
-    expect(pathAbsolute('example')).toBe('C:\\Users\\Laboratoria\\Desktop\\laboratoria\\markdown-links\\example')
-  })
+    expect(pathAbsolute('example')).toBe('C:\\Users\\Laboratoria\\Desktop\\laboratoria\\markdown-links\\example');
+  });
 
-})
+});
 
 describe('pathAbsolute', () => {
   it('Debería devolver una array con los archivos Markdown', () => {
@@ -24,22 +26,23 @@ describe('pathAbsolute', () => {
       'C:\\Users\\Laboratoria\\Desktop\\laboratoria\\markdown-links\\example\\file1.md',
       'C:\\Users\\Laboratoria\\Desktop\\laboratoria\\markdown-links\\example\\others\\file3.md',
       'C:\\Users\\Laboratoria\\Desktop\\laboratoria\\markdown-links\\example\\styles\\images\\file2.mdown'
-    ]
+    ];
     expect(filterMarkdown('example', pathAbsolute)).toStrictEqual(arrayMD);
-  })
+  });
 
-})
+});
+
 describe('pathAbsolute', () => {
   it('Debería devolver una array con los archivos Markdown', () => {
     const arrayMD = [
       'C:\\Users\\Laboratoria\\Desktop\\laboratoria\\markdown-links\\example\\file1.md',
       'C:\\Users\\Laboratoria\\Desktop\\laboratoria\\markdown-links\\example\\others\\file3.md',
       'C:\\Users\\Laboratoria\\Desktop\\laboratoria\\markdown-links\\example\\styles\\images\\file2.mdown'
-    ]
+    ];
     expect(filterMarkdown('example', pathAbsolute)).toStrictEqual(arrayMD);
-  })
+  });
 
-})
+});
 
 describe('getLinks', () => {
   afterEach(() => {
@@ -73,18 +76,18 @@ describe('getLinks', () => {
         line: 11,
         file: 'C:\\Users\\Laboratoria\\Desktop\\laboratoria\\markdown-links\\example\\file1.md'
       },
-    ]
+    ];
     return expect(getLinks('C:\\Users\\Laboratoria\\Desktop\\laboratoria\\markdown-links\\example\\file1.md')).resolves.toEqual(arrayinfoLinks);
-  })
+  });
 
   it('getLinks should handle error with catch', () => {
     // Mockear la función fs.promises.readFile para que falle y lance un error, no importa que error lance porque no estoy manejando el error en el .catch
     jest.spyOn(promises, 'readFile').mockRejectedValue('Error');
 
-    return expect(getLinks('path')).resolves.toBe('Cannot read file')
+    return expect(getLinks('path')).resolves.toBe('Cannot read file');
 
   });
-})
+});
 
 describe('getAllLinks', () => {
   it('Retorna un arreglo con la información de los links encontrados en todos los archivos Markdown', () => {
@@ -124,11 +127,11 @@ describe('getAllLinks', () => {
           file: 'C:\\Users\\Laboratoria\\Desktop\\laboratoria\\markdown-links\\example\\styles\\images\\file2.mdown'
         }
       ]
-    ]
+    ];
     return expect(getAllLinks('example')).resolves.toStrictEqual(infoLinks);
 
-  })
-})
+  });
+});
 
 describe('infoFetchLinks', () => {
   const linksInfo = [
@@ -144,7 +147,7 @@ describe('infoFetchLinks', () => {
       line: 6,
       file: 'C:\\Users\\Laboratoria\\Desktop\\laboratoria\\markdown-links\\example\\file1.md'
     },
-  ]
+  ];
   const fetchOK = [
     {
       href: 'https://carlosazaustre.es/manejando-la-asincronia-en-javascript',
@@ -162,7 +165,7 @@ describe('infoFetchLinks', () => {
       status: 200,
       ok: 'ok',
     },
-  ]
+  ];
   const fetchFail = [
     {
       href: 'https://carlosazaustre.es/manejando-la-asincronia-en-javascript',
@@ -180,7 +183,7 @@ describe('infoFetchLinks', () => {
       status: 404,
       ok: 'fail',
     },
-  ]
+  ];
   const fetchUnexpectedError = [
     {
       href: 'https://carlosazaustre.es/manejando-la-asincronia-en-javascript',
@@ -198,16 +201,16 @@ describe('infoFetchLinks', () => {
       status: 'Unexpected error',
       ok: 'fail',
     },
-  ]
+  ];
   afterEach(() => {
     global.fetch.mockRestore();
 
-  })
+  });
   it('Retorna un arreglo con el estado "ok" de los links devueltos por fetch', () => {
     jest.spyOn(global, 'fetch').mockResolvedValue({
       ok: true,
       status: 200,
-    })
+    });
     return expect(infoFetchLinks(linksInfo)).resolves.toStrictEqual(fetchOK);
   });
 
@@ -216,17 +219,17 @@ describe('infoFetchLinks', () => {
     jest.spyOn(global, 'fetch').mockResolvedValue({
       ok: false,
       status: 404,
-    })
+    });
     return expect(infoFetchLinks(linksInfo)).resolves.toStrictEqual(fetchFail);
   });
 
 
   it('Retorna un arreglo con el estado "fail" de los links devueltos por fetch', () => {
-    jest.spyOn(global, 'fetch').mockRejectedValue('Error')
+    jest.spyOn(global, 'fetch').mockRejectedValue('Error');
     return expect(infoFetchLinks(linksInfo)).resolves.toStrictEqual(fetchUnexpectedError);
   });
 
-})
+});
 
 
 

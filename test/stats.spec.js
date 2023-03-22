@@ -1,4 +1,4 @@
-import { brokenLinks, totalLinks, uniqueLinks } from "../src/stats.js"
+import { brokenLinks, totalLinks, uniqueLinks } from "../src/stats.js";
 
 describe('totalLinks', () => {
   const arrayStats = [
@@ -42,14 +42,18 @@ describe('totalLinks', () => {
       status: 200,
       ok: 'ok'
     }
-  ]
+  ];
+
   it('Debería retornar el total de links', () => {
     expect(totalLinks(arrayStats)).toBe(5);
-  })
+  });
+
   it('Debería retornar el total  de links únicos', () => {
     expect(uniqueLinks(arrayStats)).toBe(4);
-  })
+  });
+
   it('Debería retornar el total  de links rotos', () => {
     expect(brokenLinks(arrayStats)).toBe(1);
-  })
-})
+  });
+
+});

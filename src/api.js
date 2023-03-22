@@ -13,7 +13,7 @@ export const pathAbsolute = (path) => isAbsolute(path) ? path : resolve(path);
 
 // verifica si el path es un directorio y luego guardarlo en un arreglo
 export const filterMarkdown = (path, functionPathAbsolute) => {
-  let arraymarkdown = [];
+  const arraymarkdown = [];
   const pathAbsolute = functionPathAbsolute(path);
   const fileExt = extname(pathAbsolute);
   // probar si es un directorio
@@ -29,33 +29,33 @@ export const filterMarkdown = (path, functionPathAbsolute) => {
     arraymarkdown.push(pathAbsolute);
   }
   return arraymarkdown;
-}
+};
 
 export const getLinks = (path) => {
   const md = new MarkdownIt();
   return readFile(path, 'utf-8')
     .then(file => {
-      let arrayTokens = md.parse(file, {});
+      const arrayTokens = md.parse(file, {});
       return loopTokens(arrayTokens, path);
     })
-    .catch(() => 'Cannot read file')
-}
+    .catch(() => 'Cannot read file');
+};
 
 export const getAllLinks = (path) => {
   const arrayMarkdown = filterMarkdown(path, pathAbsolute).map(file => getLinks(file));
   return Promise.all(arrayMarkdown);
-}
+};
 
 export const infoFetchLinks = (arrayLinks) => {
   const linksInfo = arrayLinks.map((obj) =>
     fetch(obj.href)
       .then(res => {
-        if (res.ok) return { ...obj, status: res.status, ok: 'ok' }
-        return { ...obj, status: res.status, ok: 'fail' }
+        if (res.ok) return { ...obj, status: res.status, ok: 'ok' };
+        return { ...obj, status: res.status, ok: 'fail' };
       })
       .catch((err) => {
-        return { ...obj, status: `Unexpected error`, ok: 'fail' }
+        return { ...obj, status: `Unexpected error`, ok: 'fail' };
       })
-  )
+  );
   return Promise.all(linksInfo);
-}
+};

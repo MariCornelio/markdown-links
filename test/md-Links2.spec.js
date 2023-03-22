@@ -14,6 +14,6 @@ jest.mock('../src/api.js', () => {
 describe("mdLinks2", () => {
   it("Debería rechazar si ocurre un error al obtener los links", () => {
     getAllLinks.mockReturnValue(Promise.reject("Cannot read file"));
-    return expect(mdLinks('example')).rejects.toBe('Cannot read file')
+    return expect(mdLinks('example')).rejects.toBe('Cannot read file');
   });
 });
